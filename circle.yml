@@ -1,0 +1,31 @@
+machine:
+  timezone: Asia/Tokyo
+  php:
+    version: 7.1.0
+#  services:
+#    - mysql
+  environment:
+    APP_ENV: test
+    DB_CONNECTION: circle_test
+    DB_HOST: 127.0.0.1
+    DB_DATABASE: circle_test
+    DB_USERNAME: ubuntu
+dependencies:
+  cache_directories:
+      - ~/.composer/cache
+  pre:
+    - chmod -R 777 storage
+  override:
+    - composer install --prefer-source --no-interaction
+  post:
+    - cp .env.example .env
+#    - cp .env.circleci .env
+#    - rm .env.testing
+database:
+  post:
+#    - php artisan migrate:refresh --force
+#    - php artisan db:seed
+test:
+  override:
+    - php vendor/bin/phpunit
+#    - vendor/bin/phpunit --configuration phpunit.xml.dist --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml
