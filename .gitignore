@@ -19,7 +19,6 @@ _ide_helper.php
 
 # Laravel
 bootstrap/compiled.php
-storage/
 
 # Laravel 5 & Lumen specific
 bootstrap/cache/
