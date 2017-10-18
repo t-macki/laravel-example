@@ -17,8 +17,3 @@ _ide_helper.php
 /.phpstorm.meta.php
 .phpstorm.meta.php
 
-# Laravel
-bootstrap/compiled.php
-
-# Laravel 5 & Lumen specific
-bootstrap/cache/
