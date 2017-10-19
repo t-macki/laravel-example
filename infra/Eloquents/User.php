@@ -24,6 +24,8 @@ class User extends Authenticatable
         'email_before',
         'email_withdrawal',
         'status',
+        'provider',
+        'provider_id',
         'email_verify_token',
         'email_verify_time',
         'email_verify_sent_at',

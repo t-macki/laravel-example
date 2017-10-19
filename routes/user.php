@@ -4,6 +4,10 @@ Route::group(['middleware' => 'guest:users'], function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('get.user.login');
     Route::post('login', 'Auth\LoginController@login')->name('post.user.login');
 
+    Route::get('login/facebook', 'Auth\LoginController@redirectToProvider')->name('get.facebook.login');
+    Route::get('facebook/callback', 'Auth\LoginController@handleProviderCallback');
+    Route::get('callback', 'Auth\LoginController@handleProviderCallback');
+
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('get.user.register');
     Route::post('register', 'Auth\RegisterController@register')->name('post.user.register');
     Route::get('verify/{token}', 'Auth\RegisterController@getVerify')->name('get.user.verify');

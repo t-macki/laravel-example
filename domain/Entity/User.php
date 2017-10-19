@@ -19,6 +19,8 @@ class User implements EntityInterface
     private $email_before;
     private $email_withdrawal;
     private $status;
+    private $provider;
+    private $provider_id;
     private $email_verify_token;
     private $email_verify_time;
     private $email_verify_sent_at;

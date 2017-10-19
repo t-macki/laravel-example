@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('email_temp')->default(null)->nullable()->comment('仮登録メールアドレス');
             $table->string('email_before')->default(null)->nullable()->comment('変更前メールアドレス');
             $table->string('email_withdrawal')->default(null)->nullable()->comment('退会時メールアドレス');
+            $table->string('provider')->default(null)->nullable();
+            $table->string('provider_id')->default(null)->nullable();
             $table->tinyInteger('status')->default(0);
             $table->string('email_verify_token')->nullable();
             $table->timestamp('email_verify_time')->nullable();
