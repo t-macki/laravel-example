@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Infrastructure\Eloquents\Product;
-use App\Infrastructure\Repositories\User\UploadRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -29,6 +27,11 @@ class RepositoryServiceProvider extends ServiceProvider
             \Domain\Interfaces\Repositories\UserRepository::class,
             \Infra\Repositories\Eloquents\EloquentUserRepository::class
         );
+        $this->app->bind(
+            \Domain\Interfaces\Repositories\ContactRepository::class,
+            \Infra\Repositories\Eloquents\EloquentContactRepository::class
+        );
+
 
         $this->app->bind(
             \Domain\Interfaces\Notifications\UserRegisterNotification::class,
@@ -37,6 +40,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             \Domain\Interfaces\Notifications\UserVerifyNotification::class,
             \Infra\Repositories\Mail\MailUserVerifyNotification::class
+        );
+        $this->app->bind(
+            \Domain\Interfaces\Notifications\ContactRegisterNotification::class,
+            \Infra\Repositories\Mail\MailContactRegisterNotification::class
         );
     }
 }
