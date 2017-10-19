@@ -31,8 +31,8 @@ class Register extends BaseFormRequest
 
     protected function transform(array $attrs)
     {
-        $inputs['email'] = $attrs['email'] ?? '';
-        $inputs['password'] = $attrs['password'] ?? '';
+        $inputs[ 'email' ] = $attrs[ 'email' ] ?? '';
+        $inputs[ 'password' ] = $attrs[ 'password' ] ?? '';
         return $inputs;
     }
 }
