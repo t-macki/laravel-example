@@ -18,7 +18,7 @@ abstract class BaseFormRequest extends FormRequest
      */
     public function attrs()
     {
-        $attrs = array_filter($this->all(), function ($k) {
+        $attrs = array_filter($this->all(), function($k) {
             return 0 !== strpos($k, '_');
         }, ARRAY_FILTER_USE_KEY);
 
