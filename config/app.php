@@ -179,6 +179,7 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
     ],
 
     /*

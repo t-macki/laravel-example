@@ -47,19 +47,25 @@
                             <li><a href="{{ route('get.user.register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                                @if(Auth::user()->name)
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+                                @else
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        ダッシュボード <span class="caret"></span>
+                                    </a>
+                                @endif
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ route('user.logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
@@ -70,6 +76,14 @@
                 </div>
             </div>
         </nav>
+        <div class="l-alert-block">
+            @if (session('success_message'))
+                <div class="alert alert-success">{{ session('success_message') }}</div>
+            @endif
+            @if (session('error_message'))
+                <div class="alert alert-danger">{{ session('error_message') }}</div>
+            @endif
+        </div>
 
         @yield('content')
     </div>
