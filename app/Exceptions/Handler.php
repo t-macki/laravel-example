@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
         \Log::debug($request->getContentType());
 
         if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json([ 'error' => 'Unauthenticated.' ], 401);
         }
 
         return redirect()->guest(route('get.user.login'));
