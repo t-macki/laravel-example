@@ -22,7 +22,6 @@ class UserVerify extends Mailable
      */
     public function __construct(User $user)
     {
-        \Log::debug(print_r($user, true));
         $this->user = $user;
     }
 
@@ -33,6 +32,10 @@ class UserVerify extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.user.auth.verify')->subject('登録完了');
+        return $this->markdown('emails.user.auth.verify')
+            ->subject('登録完了')
+            ->with([
+                'test' => 'テンプレートテスト'
+            ]);
     }
 }
