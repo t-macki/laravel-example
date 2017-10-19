@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/verifymail', function(){
+    // routeから作成したメールクラスを呼び出してメールを確認
+    return new Infra\Mail\User\UserVerify(new \Domain\Entity\User());
+});
