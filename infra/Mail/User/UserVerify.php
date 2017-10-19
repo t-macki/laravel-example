@@ -12,7 +12,7 @@ class UserVerify extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /** @var User  */
+    /** @var User */
     public $user;
 
     /**

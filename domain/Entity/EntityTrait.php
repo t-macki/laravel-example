@@ -1,7 +1,5 @@
 <?php
-
 namespace Domain\Entity;
-
 
 trait EntityTrait
 {
@@ -10,7 +8,7 @@ trait EntityTrait
      *
      * @param array
      */
-    public function __construct(array $properties = array())
+    public function __construct(array $properties = [])
     {
         $this->initialize($properties);
     }
@@ -20,7 +18,7 @@ trait EntityTrait
      *
      * @param array
      */
-    private function initialize(array $properties = array())
+    private function initialize(array $properties = [])
     {
         foreach (array_keys(get_object_vars($this)) as $name) {
             $this->{$name} = null;
@@ -32,9 +30,7 @@ trait EntityTrait
         }
         if (count($properties) !== 0) {
             throw new \InvalidArgumentException(
-                sprintf('Not supported properties [%s]',
-                    implode(',', array_keys($properties))
-                )
+                sprintf('Not supported properties [%s]', implode(',', array_keys($properties)))
             );
         }
         return $this;
@@ -47,7 +43,7 @@ trait EntityTrait
      */
     public function toArray()
     {
-        $values = array();
+        $values = [];
         foreach (array_keys(get_object_vars($this)) as $name) {
             $value = $this->{$name};
             $values[$name] = ($value instanceof EntityInterface) ? $value->toArray() : $value;
@@ -116,6 +112,6 @@ trait EntityTrait
 
     public function __toString()
     {
-        return __CLASS__ .' : '. json_encode($this->toArray());
+        return __CLASS__ . ' : ' . json_encode($this->toArray());
     }
 }

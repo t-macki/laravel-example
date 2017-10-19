@@ -14,7 +14,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class RegisterTest extends TestCase
 {
-    //use DatabaseTransactions;
+    use DatabaseTransactions;
 
     public function setUp()
     {
@@ -40,8 +40,8 @@ class RegisterTest extends TestCase
         Mail::fake();
 
         $inputs = [
-            'email' => 'beyond.prep@gmail.com',
-            'password' => '11111111',
+            'email'                 => 'beyond.prep@gmail.com',
+            'password'              => '11111111',
             'password_confirmation' => '11111111',
         ];
 
@@ -69,13 +69,13 @@ class RegisterTest extends TestCase
         $verifyData = new Carbon();
         $user = factory(\Infra\Eloquents\User::class)->create([
             'email'                => 'usertestverifysuccess@example.com_temp',
-            'email_temp'                => 'usertestverifysuccess@example.com',
+            'email_temp'           => 'usertestverifysuccess@example.com',
             'email_verify_time'    => null,
             'email_verify_sent_at' => $verifyData,
             'email_verify_status'  => \Config::get('const.USER_VERIFY_STATUS_NG'),
         ]);
 
-        $response = $this->get(route('get.user.verify', $user->email_verify_token));
+        $this->get(route('get.user.verify', $user->email_verify_token));
 
         $update = User::find($user->id);
         $this->assertEquals(\Config::get('const.USER_VERIFY_STATUS_OK'), $update->email_verify_status);
@@ -83,7 +83,6 @@ class RegisterTest extends TestCase
         Mail::assertSent(UserVerify::class, function ($mail) use ($update) {
             return $mail->hasTo($update->email);
         });
-
     }
 
     /**
@@ -153,7 +152,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHas('errors');
         $response->assertSessionHasErrors([
             'email' => trans('validation.max.string',
-                ['attribute' => trans('validation.attributes.email'), 'max' => 255])
+                ['attribute' => trans('validation.attributes.email'), 'max' => 255]
+            )
         ]);
         Session::forget('errors');
 

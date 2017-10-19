@@ -12,7 +12,8 @@ class MailUserRegisterNotification implements UserRegisterNotification
      * @param array $user
      * @throws InfraException
      */
-    public function build(User $user){
+    public function build(User $user)
+    {
         \Log::debug("MailUserRegisterNotification build ---------------------");
         \Log::debug(print_r($user, true));
         try {
